@@ -1,0 +1,45 @@
+{
+name: CI for Spring Boot Multi-Module Project
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Étape 1 : Clonage du dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Étape 2 : Configuration de JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'  # Utilisation de Eclipse Temurin (OpenJDK)
+          cache: 'maven'  # Mise en cache des dépendances Maven
+
+      # Étape 3 : Construction et test avec Maven
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
+        # -B : Mode batch (non interactif)
+        # clean package : Nettoie, compile, exécute les tests, et construit tous les modules
+
+      # Étape 4 : Archive des artefacts construits (JARs des modules)
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-jars
+          path: |
+            rest-api/target/*.jar
+            server/target/*.jar
+}
