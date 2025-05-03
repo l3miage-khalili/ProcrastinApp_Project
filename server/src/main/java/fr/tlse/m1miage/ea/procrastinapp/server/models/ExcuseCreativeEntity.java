@@ -22,4 +22,7 @@ public class ExcuseCreativeEntity {
 
     @Enumerated(EnumType.STRING)
     private StatutExcuseCreative statut;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateurEntity;
 }

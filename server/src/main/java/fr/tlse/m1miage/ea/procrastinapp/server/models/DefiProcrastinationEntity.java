@@ -25,4 +25,7 @@ public class DefiProcrastinationEntity {
 
     @Enumerated(EnumType.STRING)
     private StatutDefiProcrastination statut;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateurEntity;
 }
