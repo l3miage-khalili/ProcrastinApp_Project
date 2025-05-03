@@ -23,4 +23,7 @@ public class TacheAEviterEntity {
     private StatutTacheAEviter statut;
 
     private LocalDate dateCreation;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateurEntity;
 }

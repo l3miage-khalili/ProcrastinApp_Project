@@ -29,4 +29,7 @@ public class PiegeProductiviteEntity {
 
     @Enumerated(EnumType.STRING)
     private StatutPiegeProductivite statut;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateurEntity;
 }
