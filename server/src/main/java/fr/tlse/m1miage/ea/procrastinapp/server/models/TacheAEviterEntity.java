@@ -2,13 +2,15 @@ package fr.tlse.m1miage.ea.procrastinapp.server.models;
 
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutTacheAEviter;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
-
+@Data
 @Entity
 @Table(name = "taches_a_eviter")
 public class TacheAEviterEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -23,7 +25,9 @@ public class TacheAEviterEntity {
     private StatutTacheAEviter statut;
 
     private LocalDate dateCreation;
-
+    /**
+     * Goooddd! une tache peut etre liée a un utilisateur et il n'ya pas de table de jointure
+     */
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
 }

@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class UtilisateurEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String pseudo;
@@ -46,10 +47,14 @@ public class UtilisateurEntity {
 
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<DefiProcrastinationEntity> defiProcrastinationEntities;
-
+    /**
+     * Comment est modeliser le many to one (non reciproque) coté BD??
+     */
     @ManyToOne
     private UtilisateurEntity gestionnaire;
-
+    /**
+     * Comment est modeliser le many to one (non reciproque) coté BD??
+     */
     @OneToMany(mappedBy = "gestionnaire")
     private Set<UtilisateurEntity> antiProcrastinateurs;
 }

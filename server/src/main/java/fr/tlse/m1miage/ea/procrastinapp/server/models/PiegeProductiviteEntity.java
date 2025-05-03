@@ -4,13 +4,15 @@ import fr.tlse.m1miage.ea.procrastinapp.server.enums.NiveauDifficulte;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutPiegeProductivite;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.TypePiegeProductivite;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
-
+@Data
 @Entity
 @Table(name = "pieges_productivite")
 public class PiegeProductiviteEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titre;
     private String descritpion;
@@ -30,6 +32,9 @@ public class PiegeProductiviteEntity {
     @Enumerated(EnumType.STRING)
     private StatutPiegeProductivite statut;
 
+    /**
+     * table de jointure "confontationPiege"??
+     */
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
 }
