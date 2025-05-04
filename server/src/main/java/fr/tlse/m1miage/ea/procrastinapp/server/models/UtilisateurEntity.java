@@ -16,6 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class UtilisateurEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String pseudo;
@@ -44,12 +45,25 @@ public class UtilisateurEntity {
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<PiegeProductiviteEntity> piegeProductiviteEntities;
 
+    //relation entre gestionnaire et defis créés
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<DefiProcrastinationEntity> defiProcrastinationEntities;
+
+    //relation entre procrastinateur et defis jouer
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<ParticipationDefiEntity> participationDefiEntities;
 
     @ManyToOne
     private UtilisateurEntity gestionnaire;
 
     @OneToMany(mappedBy = "gestionnaire")
     private Set<UtilisateurEntity> antiProcrastinateurs;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<AttributionRecompenseEntity> attributionRecompenses;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<ConfrontationPiegeEntity> confrontationPieges;
+
+
 }
