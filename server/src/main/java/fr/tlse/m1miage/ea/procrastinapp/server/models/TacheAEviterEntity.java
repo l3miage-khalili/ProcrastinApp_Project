@@ -25,9 +25,7 @@ public class TacheAEviterEntity {
     private StatutTacheAEviter statut;
 
     private LocalDate dateCreation;
-    /**
-     * Goooddd! une tache peut etre liée a un utilisateur et il n'ya pas de table de jointure
-     */
+
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
 }

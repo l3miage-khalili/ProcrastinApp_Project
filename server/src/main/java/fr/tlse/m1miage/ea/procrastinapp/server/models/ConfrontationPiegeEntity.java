@@ -13,17 +13,11 @@ public class ConfrontationPiegeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idPiege;
+    @ManyToOne
+    private PiegeProductiviteEntity piege;
 
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idUtilisateur;
+    @ManyToOne
+    private UtilisateurEntity utilisateur;
 
     private LocalDate dateConfrontation;
 

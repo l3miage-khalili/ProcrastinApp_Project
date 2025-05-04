@@ -45,16 +45,25 @@ public class UtilisateurEntity {
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<PiegeProductiviteEntity> piegeProductiviteEntities;
 
+    //relation entre gestionnaire et defis créés
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<DefiProcrastinationEntity> defiProcrastinationEntities;
-    /**
-     * Comment est modeliser le many to one (non reciproque) coté BD??
-     */
+
+    //relation entre procrastinateur et defis jouer
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<ParticipationDefiEntity> participationDefiEntities;
+
     @ManyToOne
     private UtilisateurEntity gestionnaire;
-    /**
-     * Comment est modeliser le many to one (non reciproque) coté BD??
-     */
+
     @OneToMany(mappedBy = "gestionnaire")
     private Set<UtilisateurEntity> antiProcrastinateurs;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<AttributionRecompenseEntity> attributionRecompenses;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Set<ConfrontationPiegeEntity> confrontationPieges;
+
+
 }

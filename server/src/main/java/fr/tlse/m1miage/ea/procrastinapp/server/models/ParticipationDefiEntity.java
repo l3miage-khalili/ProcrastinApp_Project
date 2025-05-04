@@ -12,16 +12,12 @@ public class ParticipationDefiEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idDefi;
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idUtilisateur;
+
+    @ManyToOne
+    private DefiProcrastinationEntity defi;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateur;
 
     private LocalDate dateInscription;
 

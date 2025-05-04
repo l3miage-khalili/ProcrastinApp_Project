@@ -12,16 +12,12 @@ public class AttributionRecompenseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idRecompense;
-    /**
-     * OneToOne ?? type => int ?
-     */
-    @Column(nullable = false)
-    private Long idUtilisateur;
+
+    @ManyToOne
+    private RecompenseEntity recompense;
+
+    @ManyToOne
+    private UtilisateurEntity utilisateur;
 
     private LocalDate dateObtention;
     private LocalDate dateExpiration;

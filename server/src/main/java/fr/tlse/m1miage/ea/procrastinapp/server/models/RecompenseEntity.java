@@ -6,6 +6,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "recompenses")
@@ -23,4 +25,7 @@ public class RecompenseEntity {
 
     @Enumerated(EnumType.STRING)
     private TypeRecompense type;
+
+    @OneToMany(mappedBy = "recompense")
+    private Set<AttributionRecompenseEntity> attributions;
 }

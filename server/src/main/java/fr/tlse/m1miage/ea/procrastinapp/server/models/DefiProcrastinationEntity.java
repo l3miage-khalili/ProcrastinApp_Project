@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "defis_procrastination")
@@ -28,11 +30,10 @@ public class DefiProcrastinationEntity {
     @Enumerated(EnumType.STRING)
     private StatutDefiProcrastination statut;
 
-    /**
-     * plusieurs defis sont liés sont lié qu'à un utilisateurs?
-     *OneToMany? table de jointure => ParticipationDefiEntity ?
-     * supprimer l'attribut
-     */
+    @OneToMany(mappedBy = "defi")
+    private Set<ParticipationDefiEntity> participations;
+
+    //utilisateur => Gestionnaire
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
 }

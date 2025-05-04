@@ -7,6 +7,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "pieges_productivite")
@@ -32,9 +34,9 @@ public class PiegeProductiviteEntity {
     @Enumerated(EnumType.STRING)
     private StatutPiegeProductivite statut;
 
-    /**
-     * table de jointure "confontationPiege"??
-     */
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
+
+    @OneToMany(mappedBy = "piege")
+    private Set<ConfrontationPiegeEntity> confrontationPiegeEntities;
 }
