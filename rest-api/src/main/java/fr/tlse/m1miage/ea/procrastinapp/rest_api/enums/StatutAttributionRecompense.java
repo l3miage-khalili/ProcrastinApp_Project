@@ -1,4 +1,4 @@
-package fr.tlse.m1miage.ea.procrastinapp.server.enums;
+package fr.tlse.m1miage.ea.procrastinapp.rest_api.enums;
 
 public enum StatutAttributionRecompense {
     ACTIF("ACTIF"),
