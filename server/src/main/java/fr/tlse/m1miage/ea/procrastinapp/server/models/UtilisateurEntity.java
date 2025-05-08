@@ -16,8 +16,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class UtilisateurEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
     private String pseudo;
 

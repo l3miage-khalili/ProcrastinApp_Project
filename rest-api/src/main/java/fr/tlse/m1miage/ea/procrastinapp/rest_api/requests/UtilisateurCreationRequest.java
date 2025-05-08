@@ -12,10 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UtilisateurCreationRequest {
-    private Long id;    // provisoirement demandé à l'utilisateur, sera automatisé dans la suite
+    private Long id;
     private String pseudo;
     private String adresseEmail;
     private Role role;
-    private NiveauProcrastination niveauProcrastination;
     private String excusePreferee;
 }

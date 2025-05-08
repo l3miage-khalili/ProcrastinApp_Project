@@ -14,7 +14,7 @@ public class UtilisateurController implements UtilisateurEndpoints {
     private final UtilisateurService utilisateurService;
 
     @Override
-    public UtilisateurResponseDTO createUtilisateur(UtilisateurCreationRequest utilisateurCreationRequest) {
-        return utilisateurService.createUtilisateur(utilisateurCreationRequest);
+    public UtilisateurResponseDTO createUtilisateur(UtilisateurCreationRequest utilisateurCreationRequest, Long idCreateur) {
+        return utilisateurService.createUtilisateur(utilisateurCreationRequest, idCreateur);
     }
 }
