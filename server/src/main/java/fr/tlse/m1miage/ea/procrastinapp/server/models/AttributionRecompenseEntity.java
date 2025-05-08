@@ -10,8 +10,7 @@ import java.time.LocalDate;
 @Table(name = "attributions_recompenses")
 public class AttributionRecompenseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
     @ManyToOne
     private RecompenseEntity recompense;

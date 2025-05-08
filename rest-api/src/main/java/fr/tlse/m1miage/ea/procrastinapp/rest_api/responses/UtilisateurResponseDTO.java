@@ -8,12 +8,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class UtilisateurResponseDTO {
+    private Boolean inscriptionReussie ;
     private Long id;
     private String pseudo;
     private String adresseEmail;

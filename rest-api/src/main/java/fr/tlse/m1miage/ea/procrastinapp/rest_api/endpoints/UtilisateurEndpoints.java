@@ -12,5 +12,5 @@ public interface UtilisateurEndpoints {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/")
-    UtilisateurResponseDTO createUtilisateur(@RequestBody UtilisateurCreationRequest utilisateurCreationRequest);
+    UtilisateurResponseDTO createUtilisateur(@RequestBody UtilisateurCreationRequest utilisateurCreationRequest, @RequestParam(required = false) Long idCreateur);
 }

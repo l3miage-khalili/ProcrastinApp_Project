@@ -11,8 +11,8 @@ import java.time.LocalDate;
 @Table(name = "excuses_creatives")
 public class ExcuseCreativeEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
+
     private String texteExcuse;
     private String situationApplication;
     private Integer votesRecus;

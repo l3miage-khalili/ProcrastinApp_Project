@@ -13,8 +13,8 @@ import java.util.Set;
 @Table(name = "recompenses")
 public class RecompenseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
+
     private String titre;
     private String description;
     private String conditionsObtention;
