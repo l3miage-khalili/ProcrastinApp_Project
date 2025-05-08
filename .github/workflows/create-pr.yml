@@ -1,0 +1,30 @@
+name: Create Pull Request on Push
+
+on:
+  push:
+    branches-ignore:
+      - main  # Ignore les pushs sur main
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Étape 2 : Créer un pull request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Jeton GitHub pour authentification
+          branch: ${{ github.ref_name }}     # Branche source (ex. dev, feat_x)
+          base: ${{ github.ref_name == 'dev' && 'main' || 'dev' }}  # dev -> main, autres -> dev
+          title: "Pull Request from ${{ github.ref_name }} to ${{ github.ref_name == 'dev' && 'main' || 'dev' }}"
+          body: |
+            Automatically created pull request from branch ${{ github.ref_name }} to ${{ github.ref_name == 'dev' && 'main' || 'dev' }}.
+            Please review and merge.
+          labels: |
+            auto-pr
+            review-needed
+          draft: false  # Crée un PR non brouillon
