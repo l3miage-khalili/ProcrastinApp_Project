@@ -1,6 +1,16 @@
 package fr.tlse.m1miage.ea.procrastinapp.server.enums;
 
 public enum StatutAttributionRecompense {
-    ACTIF,
-    EXPIRE
+    ACTIF("ACTIF"),
+    EXPIRE("EXPIRE");
+
+    private final String statutAttributionRecompense;
+
+    private StatutAttributionRecompense(String statutAttributionRecompense) {
+        this.statutAttributionRecompense = statutAttributionRecompense;
+    }
+
+    public String getStatutAttributionRecompense() {
+        return statutAttributionRecompense;
+    }
 }
