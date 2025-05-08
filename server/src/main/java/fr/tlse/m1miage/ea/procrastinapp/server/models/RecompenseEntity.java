@@ -4,11 +4,16 @@ import fr.tlse.m1miage.ea.procrastinapp.server.enums.TypeRecompense;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import lombok.Data;
 
+import java.util.Set;
+
+@Data
 @Entity
 @Table(name = "recompenses")
 public class RecompenseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String titre;
     private String description;
@@ -20,4 +25,7 @@ public class RecompenseEntity {
 
     @Enumerated(EnumType.STRING)
     private TypeRecompense type;
+
+    @OneToMany(mappedBy = "recompense")
+    private Set<AttributionRecompenseEntity> attributions;
 }
