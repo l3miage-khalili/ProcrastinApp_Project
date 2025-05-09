@@ -12,9 +12,6 @@ public class TacheAEviterEntity {
     @Id
     private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
-    @Column(nullable = false)
-    private Long idUtilisateur;
-
     private String description;
     private Integer degreUrgence;
     private LocalDate dateLimite;
