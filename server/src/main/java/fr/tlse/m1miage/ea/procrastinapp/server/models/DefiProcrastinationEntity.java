@@ -3,6 +3,7 @@ package fr.tlse.m1miage.ea.procrastinapp.server.models;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.NiveauDifficulte;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutDefiProcrastination;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -16,15 +17,22 @@ public class DefiProcrastinationEntity {
     private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
     private String titre;
+
+    @NotNull
     private String description;
+
     private Double duree;
 
     @Enumerated(EnumType.STRING)
     private NiveauDifficulte difficulte;
 
+    @NotNull
     private Integer pointsAGagner;
-    private Long createur;
+
+    @NotNull
     private LocalDate dateDebut;
+
+    @NotNull
     private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
@@ -35,5 +43,6 @@ public class DefiProcrastinationEntity {
 
     //utilisateur => Gestionnaire
     @ManyToOne
+    @NotNull
     private UtilisateurEntity utilisateurEntity;
 }
