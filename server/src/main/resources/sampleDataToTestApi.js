@@ -54,3 +54,9 @@ let creationTachesAEviter = {
         }
     ]
 }
+
+let creationParticipationAUnDefi = {
+    "id": 1,
+    "idDefi": 1,
+    "idUtilisateur": 2
+}
