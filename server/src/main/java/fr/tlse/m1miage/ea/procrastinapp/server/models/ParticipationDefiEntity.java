@@ -2,6 +2,7 @@ package fr.tlse.m1miage.ea.procrastinapp.server.models;
 
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutParticipationDefi;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -13,9 +14,11 @@ public class ParticipationDefiEntity {
     private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
     @ManyToOne
+    @NotNull
     private DefiProcrastinationEntity defi;
 
     @ManyToOne
+    @NotNull
     private UtilisateurEntity utilisateur;
 
     private LocalDate dateInscription;

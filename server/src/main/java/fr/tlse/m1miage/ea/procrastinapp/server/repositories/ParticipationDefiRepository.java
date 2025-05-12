@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ParticipationDefiRepository extends JpaRepository<ParticipationDefiEntity, Long> {
+
+    int countParticipationDefiEntitiesByUtilisateurId(Long utilisateurId);
+
+    int countParticipationDefiEntitiesByDefiId(Long defiId);
 }
