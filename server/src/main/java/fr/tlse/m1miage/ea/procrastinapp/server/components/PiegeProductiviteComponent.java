@@ -15,6 +15,10 @@ public class PiegeProductiviteComponent {
     private final PiegeProductiviteRepository piegeProductiviteRepository;
 
     public PiegeProductiviteEntity creerPiegeProductivite(PiegeProductiviteEntity piegeProductiviteEntity) {
-        return piegeProductiviteRepository.save(piegeProductiviteEntity);
+        System.out.println("save");
+        System.out.println(piegeProductiviteEntity);
+        PiegeProductiviteEntity piegeProductiviteEntityCreated = piegeProductiviteRepository.save(piegeProductiviteEntity);
+        System.out.println(piegeProductiviteEntityCreated);
+        return piegeProductiviteEntityCreated;
     }
 }
