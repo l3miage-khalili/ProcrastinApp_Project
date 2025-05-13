@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class ParticipationDefiResponseDTO {
     private Boolean creationReussie;    /* indique si la création a réussie */
-    private String message;            /* message en cas d'échec */
+    private String message;            /* message d'échec ou de succès */
     private Long id;
     private LocalDate dateInscription;
     private StatutParticipationDefi statut;

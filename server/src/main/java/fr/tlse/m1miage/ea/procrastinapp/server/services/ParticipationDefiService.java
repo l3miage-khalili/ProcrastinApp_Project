@@ -7,6 +7,7 @@ import fr.tlse.m1miage.ea.procrastinapp.rest_api.responses.UtilisateurResponseDT
 import fr.tlse.m1miage.ea.procrastinapp.server.components.DefiProcrastinationComponent;
 import fr.tlse.m1miage.ea.procrastinapp.server.components.ParticipationDefiComponent;
 import fr.tlse.m1miage.ea.procrastinapp.server.components.UtilisateurComponent;
+import fr.tlse.m1miage.ea.procrastinapp.server.enums.Role;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutParticipationDefi;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.BadRequestRestException;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.CreationFailedRestException;
@@ -38,11 +39,18 @@ public class ParticipationDefiService {
 
     public ParticipationDefiResponseDTO createParticipationDefi(ParticipationDefiCreationRequest participationCreationRequest) {
         try {
-            // on vérifie que l'utilisateur et le défi n'ont pas atteint leur nb maximum de participations
+            // on vérifie que l'utilisateur a bien le rôle d'un procrastinateur
             Long idUtilisateur = participationCreationRequest.getIdUtilisateur();
+            UtilisateurEntity utilisateur = utilisateurComponent.getUtilisateurById(idUtilisateur);
+            if (utilisateur.getRole() != Role.PROCRASTINATEUR_EN_HERBE){
+                return ParticipationDefiResponseDTO
+                        .builder()
+                        .creationReussie(false)
+                        .message("L'utilisateur doit être un procrastinateur en herbe pour participer à un défi")
+                        .build();
+            }
+            // on vérifie que l'utilisateur et le défi n'ont pas atteint leur nb maximum de participations
             Long idDefi = participationCreationRequest.getIdDefi();
-            //Set<ParticipationDefiEntity> participationsUtilisateur = utilisateur.getParticipationDefiEntities();
-            //Set<ParticipationDefiEntity> participationsDefi = defi.getParticipations();
             int nbParticipationsUtilisateur = participationDefiComponent.getNombreParticipationsByUtilisateurId(idUtilisateur);
             int nbParticipationsDefi = participationDefiComponent.getNombreParticipationsByDefiId(idDefi);
             if (nbParticipationsUtilisateur >= 3 || nbParticipationsDefi >= 5){
@@ -54,7 +62,6 @@ public class ParticipationDefiService {
             }
             else {
                 int pointsGagnes = 0;
-                UtilisateurEntity utilisateur = utilisateurComponent.getUtilisateurById(idUtilisateur);
                 DefiProcrastinationEntity defi = defiProcrastinationComponent.getDefiProcrastinationById(idDefi);
                 ParticipationDefiEntity entityFromRequest = participationDefiMapper.creationRequestToEntity(participationCreationRequest);
                 entityFromRequest.setDefi(defi);
@@ -65,6 +72,8 @@ public class ParticipationDefiService {
                 ParticipationDefiEntity savedEntity = participationDefiComponent.createParticipationDefi(entityFromRequest);
                 UtilisateurResponseDTO utilisateurDTO = utilisateurMapper.entityToResponseDTO(utilisateur);
                 DefiProcrastinationResponseDTO defiDTO = defiProcrastinationMapper.entityToResponseDTO(defi);
+                utilisateurDTO.setInscriptionReussie(true);
+                defiDTO.setCreationReussie(true);
                 ParticipationDefiResponseDTO responseDTO = participationDefiMapper.entityToResponseDTO(savedEntity);
                 responseDTO.setUtilisateur(utilisateurDTO);
                 responseDTO.setDefi(defiDTO);

@@ -2,6 +2,7 @@ package fr.tlse.m1miage.ea.procrastinapp.server.services;
 
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.requests.DefiProcrastinationCreationRequest;
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.responses.DefiProcrastinationResponseDTO;
+import fr.tlse.m1miage.ea.procrastinapp.rest_api.responses.UtilisateurResponseDTO;
 import fr.tlse.m1miage.ea.procrastinapp.server.components.DefiProcrastinationComponent;
 import fr.tlse.m1miage.ea.procrastinapp.server.components.UtilisateurComponent;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.Role;
@@ -39,8 +40,11 @@ public class DefiProcrastinationService {
                 entityFromRequest.setUtilisateurEntity(createurDefi);
                 DefiProcrastinationEntity savedEntity = defiProcrastinationComponent.createDefiProcrastination(entityFromRequest);
                 DefiProcrastinationResponseDTO responseDTO = defiProcrastinationMapper.entityToResponseDTO(savedEntity);
-                responseDTO.setCreateur(utilisateurMapper.entityToResponseDTO(createurDefi));
+                UtilisateurResponseDTO utilisateurDTO = utilisateurMapper.entityToResponseDTO(createurDefi);
+                utilisateurDTO.setInscriptionReussie(true);
+                responseDTO.setCreateur(utilisateurDTO);
                 responseDTO.setCreationReussie(true);
+                responseDTO.setMessage("Le défi a été créé avec succès");
                 return responseDTO;
             }
             else {
@@ -48,6 +52,7 @@ public class DefiProcrastinationService {
                 return DefiProcrastinationResponseDTO
                         .builder()
                         .creationReussie(false)
+                        .message("le créateur d'un défi de procrastination doit avoir le rôle d'un gestionnaire")
                         .build();
             }
         }

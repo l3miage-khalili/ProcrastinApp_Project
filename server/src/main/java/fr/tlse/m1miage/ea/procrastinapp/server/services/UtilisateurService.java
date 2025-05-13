@@ -35,6 +35,7 @@ public class UtilisateurService {
                 utilisateurEntity.setPointsAccumules(pointsAccumules);
                 UtilisateurResponseDTO responseDTO = utilisateurMapper.entityToResponseDTO(utilisateurComponent.createUtilisateur(utilisateurEntity));
                 responseDTO.setInscriptionReussie(true);
+                responseDTO.setMessage("inscription effectuée avec succès");
                 return responseDTO;
             }
             else if (utilisateurEntity.getRole() == Role.ANTI_PROCRASTINATEUR_REPENTI){
@@ -47,6 +48,7 @@ public class UtilisateurService {
                         utilisateurEntity.setPointsAccumules(pointsAccumules);
                         UtilisateurResponseDTO responseDTO = utilisateurMapper.entityToResponseDTO(utilisateurComponent.createUtilisateur(utilisateurEntity));
                         responseDTO.setInscriptionReussie(true);
+                        responseDTO.setMessage("inscription effectuée avec succès");
                         return responseDTO;
                     }
                     else {
@@ -54,6 +56,7 @@ public class UtilisateurService {
                         return UtilisateurResponseDTO
                                 .builder()
                                 .inscriptionReussie(false)
+                                .message("Un anti-procrastinateur ne doit être inscrit que par un gestionnaire")
                                 .build();
                     }
                 }
@@ -62,6 +65,7 @@ public class UtilisateurService {
                     return UtilisateurResponseDTO
                             .builder()
                             .inscriptionReussie(false)
+                            .message("fournir l'id du gestionnaire pour pouvoir créer un anti-procrastinateur")
                             .build();
                 }
             }
@@ -70,6 +74,7 @@ public class UtilisateurService {
                 return UtilisateurResponseDTO
                         .builder()
                         .inscriptionReussie(false)
+                        .message("rôle fourni invalide")
                         .build();
             }
         }

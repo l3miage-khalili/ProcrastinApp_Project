@@ -15,7 +15,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UtilisateurResponseDTO {
-    private Boolean inscriptionReussie ;
+    private Boolean inscriptionReussie ;    /* indique si l'utilisateur a été créé avec succès ou pas */
+    private String message;                 /* message d'échec ou de succès */
     private Long id;
     private String pseudo;
     private String adresseEmail;

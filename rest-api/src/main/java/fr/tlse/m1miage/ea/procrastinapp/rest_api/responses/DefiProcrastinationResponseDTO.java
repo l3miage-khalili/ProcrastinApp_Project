@@ -14,7 +14,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DefiProcrastinationResponseDTO {
-    private Boolean creationReussie;
+    private Boolean creationReussie;    /* indique si la création a réussie */
+    private String message;             /* message d'échec ou de succès */
     private Long id;
     private String titre;
     private String description;
