@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class TachesAEviterCreatonResponseDTO {
-    // indique si les taches ont ete creees avec succes ou pas
+    // indique si les taches ont été créées avec succès ou pas
     private boolean creationReussie;
 
-    // message d'echec ou de succes
+    // message d'échec ou de succès
     private String message;
 
     public TachesAEviterCreatonResponseDTO(boolean creationReussie, String message){
