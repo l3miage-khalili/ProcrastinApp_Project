@@ -13,9 +13,9 @@ public class PiegeProductiviteRequest {
     private String titre;
     private String description;
     private TypePiegeProductivite typePiegeProductivite;
-    private Long createur;
     private NiveauDifficulte niveauDifficulte;
     private Integer recompenseResistance;
     private Integer consequenceEchec;
     private StatutPiegeProductivite statut;
+    private long createur;
 }

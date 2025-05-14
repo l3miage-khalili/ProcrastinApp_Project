@@ -18,16 +18,13 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor
 public class PiegeProductiviteController implements PiegeProductiviteEndPoint  {
 
-    @Autowired
     private final PiegeProductiviteService piegeProductiviteService;
 
     @Override
     public PiegeProductiviteResponseDTO creerPiegeProductivite(PiegeProductiviteRequest request) {
         try{
-            System.out.println(request);
             return piegeProductiviteService.creerPiegeProductivite(request);
         }catch (ForbiddenRestException | EntiteNotFoundException e){
-            System.out.println("exception");
             throw new ResponseStatusException(HttpStatus.FORBIDDEN,e.getMessage());
         }
     }

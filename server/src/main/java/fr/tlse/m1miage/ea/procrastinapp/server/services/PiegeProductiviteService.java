@@ -11,12 +11,9 @@ import fr.tlse.m1miage.ea.procrastinapp.server.mappers.PiegeProductiviteMapper;
 import fr.tlse.m1miage.ea.procrastinapp.server.models.PiegeProductiviteEntity;
 import fr.tlse.m1miage.ea.procrastinapp.server.models.UtilisateurEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,15 +33,14 @@ public class PiegeProductiviteService {
         piegeProductiviteEntityToCreate.setUtilisateurEntity(utilisateur);
         piegeProductiviteEntityToCreate.setDateCreation(LocalDate.now());
 
-        System.out.println(piegeProductiviteEntityToCreate);
-
 //       creation d'un piege de productivite seulement si le role du createur est de type ANTI_PROCRASTINATEUR_REPENTI'
         if(utilisateur.getRole().equals(Role.ANTI_PROCRASTINATEUR_REPENTI)){
-            System.out.println(" before created");
             PiegeProductiviteEntity piegeProductiviteEntityCreated = piegeProductiviteComponent.creerPiegeProductivite(piegeProductiviteEntityToCreate);
-            return piegeProductiviteMapper.entityToResponseDTO(piegeProductiviteEntityCreated);
+            PiegeProductiviteResponseDTO response = piegeProductiviteMapper.entityToResponseDTO(piegeProductiviteEntityCreated);
+            response.setCreateur(piegeProductiviteRequest.getCreateur());
+
+            return response;
         }else{
-            System.out.println("no right");
             throw new ForbiddenRestException("L'utilisateur doit avoir le role 'ANTI_PROCRASTINATEUR_REPENTI' pour créer un piege de productivite !");
         }
 
