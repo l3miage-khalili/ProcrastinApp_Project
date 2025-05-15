@@ -22,7 +22,7 @@ public class PiegeProductiviteEntity {
     @Enumerated(EnumType.STRING)
     private TypePiegeProductivite typePiegeProductivite;
 
-    private Long createur;
+//    private Long createur;
 
     @Enumerated(EnumType.STRING)
     private NiveauDifficulte niveauDifficulte;

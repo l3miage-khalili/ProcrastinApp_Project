@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -63,4 +64,10 @@ public class TacheAEviterService {
             throw new ForbiddenRestException(e.getMessage());
         }
     }
+
+    public List<TacheAEviterEntity> getTachesByUtilisateur(UtilisateurEntity utilisateurEntity) {
+        return tacheAEviterComponent.getTachesByUtilisateur(utilisateurEntity);
+    }
+
+
 }

@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class PiegeProductiviteResponseDTO {
-    private int id;
+    private Long id;
     private String titre;
     private String description;
     private TypePiegeProductivite typePiegeProductivite;

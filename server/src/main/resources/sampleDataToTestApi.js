@@ -13,14 +13,14 @@ let creationAntiProcrastinateur = {
 }
 
 let creationPiegeProductivite = {
-    titre:"Plannifier ses journées",
-    description:"Force le Procrastinateur en herbe à plannifier ses journée la veille pour etre plus productif",
-    typePiegeProductivite:"DEFI",
-    createur:1,
-    niveauDifficulte:"DIFFICILE",
-    recompenseResistance: 1000,
-    consequenceEchec:500,
-    statut:"ACTIF"
+    "titre":"Plannifier ses journées",
+    "description":"Force le Procrastinateur en herbe à plannifier ses journée la veille pour etre plus productif",
+    "typePiegeProductivite":"DEFI",
+    "createur":1,
+    "niveauDifficulte":"DIFFICILE",
+    "recompenseResistance": 1000,
+    "consequenceEchec":500,
+    "statut":"ACTIF"
 }
 
 let creationDefiProcrastination = {
@@ -59,4 +59,17 @@ let creationParticipationAUnDefi = {
     "id": 1,
     "idDefi": 1,
     "idUtilisateur": 2
+}
+
+let excuseCreative = {
+    "id":1,
+    "texteExcuse":"j'etais malade",
+    "situationApplication":"normal",
+    "createur":2,
+    "categorie":"TRAVAIL"
+}
+
+let voteExcuseCreative = {
+    "excuseCreativeId":"1",
+    "votant":"3",
 }

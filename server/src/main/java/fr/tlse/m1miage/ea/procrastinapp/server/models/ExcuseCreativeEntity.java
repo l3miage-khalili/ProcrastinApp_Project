@@ -16,7 +16,6 @@ public class ExcuseCreativeEntity {
     private String texteExcuse;
     private String situationApplication;
     private Integer votesRecus;
-    private Long auteur;
     private LocalDate dateSoumission;
 
     @Enumerated(EnumType.STRING)
@@ -24,11 +23,7 @@ public class ExcuseCreativeEntity {
 
     @Enumerated(EnumType.STRING)
     private StatutExcuseCreative statut;
-    /**
-     * une excuse créative esr créer par un seul utilisateur
-     * creer une classe (table) qui fait le lien entre les votes et les excuses?
-     *
-     */
+
     @ManyToOne
     private UtilisateurEntity utilisateurEntity;
 }

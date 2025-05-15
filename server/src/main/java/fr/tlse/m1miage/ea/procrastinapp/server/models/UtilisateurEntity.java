@@ -41,8 +41,8 @@ public class UtilisateurEntity {
     @OneToMany(mappedBy = "utilisateurEntity")
     private Set<ExcuseCreativeEntity> excuseCreativeEntities;
 
-    @OneToMany(mappedBy = "utilisateurEntity")
-    private Set<PiegeProductiviteEntity> piegeProductiviteEntities;
+//    @OneToMany(mappedBy = "utilisateurEntity")
+//    private Set<PiegeProductiviteEntity> piegeProductiviteEntities;
 
     //relation entre gestionnaire et defis créés
     @OneToMany(mappedBy = "utilisateurEntity")

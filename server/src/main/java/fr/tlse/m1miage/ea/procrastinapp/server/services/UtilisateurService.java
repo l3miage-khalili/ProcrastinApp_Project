@@ -91,4 +91,8 @@ public class UtilisateurService {
             throw new ForbiddenRestException(e.getMessage());
         }
     }
+
+    public UtilisateurEntity getUtilisateurById(Long idUtilisateur) throws EntiteNotFoundException {
+        return utilisateurComponent.getUtilisateurById(idUtilisateur);
+    }
 }
