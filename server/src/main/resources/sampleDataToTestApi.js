@@ -60,3 +60,11 @@ let creationParticipationAUnDefi = {
     "idDefi": 1,
     "idUtilisateur": 2
 }
+
+let excuseCreative = {
+    "id":1,
+    "texteExcuse":"j'etais malade",
+    "situationApplication":"normal",
+    "createur":2,
+    "categorie":"TRAVAIL"
+}
