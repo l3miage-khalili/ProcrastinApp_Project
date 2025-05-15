@@ -68,3 +68,8 @@ let excuseCreative = {
     "createur":2,
     "categorie":"TRAVAIL"
 }
+
+let voteExcuseCreative = {
+    "excuseCreativeId":"1",
+    "votant":"3",
+}

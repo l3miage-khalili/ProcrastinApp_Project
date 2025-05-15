@@ -1,6 +1,7 @@
 package fr.tlse.m1miage.ea.procrastinapp.server.services;
 
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.requests.ExcuseCreativeRequest;
+import fr.tlse.m1miage.ea.procrastinapp.rest_api.requests.ExcuseCreativeVoteRequest;
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.responses.ExcuseCreativeResponseDTO;
 import fr.tlse.m1miage.ea.procrastinapp.server.components.ExcuseCreativeComponent;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.Role;
@@ -72,6 +73,15 @@ public class ExcuseCreativeService {
         }
 
         return peutCreerUneExcuse;
+    }
+
+    public int voterExcuseCreative(ExcuseCreativeVoteRequest request) throws EntiteNotFoundException{
+        UtilisateurEntity utilisateur = utilisateurService.getUtilisateurById(request.getVotant());
+
+        if(utilisateur.getRole().equals(Role.PROCRASTINATEUR_EN_HERBE)){
+            return excuseCreativeComponent.voterExcuseCreative(request.getExcuseCreativeId());
+        }
+        return -1;
     }
 
 }
