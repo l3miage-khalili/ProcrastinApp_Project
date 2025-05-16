@@ -8,6 +8,7 @@ import fr.tlse.m1miage.ea.procrastinapp.server.enums.Role;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutExcuseCreative;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.StatutTacheAEviter;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.ForbiddenRestException;
+import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.NotFoundRestException;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.technical.EntiteNotFoundException;
 import fr.tlse.m1miage.ea.procrastinapp.server.mappers.ExcuseCreativeMapper;
 import fr.tlse.m1miage.ea.procrastinapp.server.models.ExcuseCreativeEntity;
@@ -17,7 +18,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -40,12 +44,10 @@ public class ExcuseCreativeService {
         excuseCreativeToCreate.setStatut(StatutExcuseCreative.EN_ATTENTE);
         excuseCreativeToCreate.setDateSoumission(LocalDate.now());
         excuseCreativeToCreate.setVotesRecus(0);
-
+        excuseCreativeToCreate.setUtilisateurEntity(utilisateurService.getUtilisateurById(request.getAuteur()));;
         ExcuseCreativeEntity excuseCreativeCreated = excuseCreativeComponent.createExcuseCreative(excuseCreativeToCreate);
-        ExcuseCreativeResponseDTO response = excuseCreativeMapper.entityToResponseDTO(excuseCreativeCreated);
-        response.setAuteur(request.getAuteur());
-
-        return response;
+//        ExcuseCreativeResponseDTO response = excuseCreativeMapper.entityToResponseDTO(excuseCreativeCreated);
+        return excuseCreativeMapper.entityToResponseDTO(excuseCreativeCreated);
     }
 
     /**
@@ -84,4 +86,27 @@ public class ExcuseCreativeService {
         return -1;
     }
 
+    public List<ExcuseCreativeResponseDTO> afficherClassement(int nbClassement) throws NotFoundRestException {
+        List<ExcuseCreativeResponseDTO> result = new ArrayList<>();
+        List<ExcuseCreativeEntity> classements = null;
+
+        //check si l'utilisateur veut afficher tout le classement ou seulement un certains nombre
+        if(nbClassement == 0){
+            classements = excuseCreativeComponent.afficherToutLeClassement();
+        }else{
+            classements = excuseCreativeComponent.afficherClassement(nbClassement);
+        }
+
+        //on informe l'utilisateur qu'aucune excuse creative n'existe pour le moment
+        if(classements.size() == 0){
+            throw new NotFoundRestException("Aucune excuse créative n'existe pour le moement");
+        }
+
+        //transformation vers une liste de responseDTO object
+        for(ExcuseCreativeEntity classement: classements){
+            result.add(excuseCreativeMapper.entityToResponseDTO(classement));
+        }
+
+        return result;
+    }
 }
