@@ -5,12 +5,15 @@ import fr.tlse.m1miage.ea.procrastinapp.rest_api.requests.ExcuseCreativeRequest;
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.requests.ExcuseCreativeVoteRequest;
 import fr.tlse.m1miage.ea.procrastinapp.rest_api.responses.ExcuseCreativeResponseDTO;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.ForbiddenRestException;
+import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.rest.NotFoundRestException;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.technical.EntiteNotFoundException;
 import fr.tlse.m1miage.ea.procrastinapp.server.services.ExcuseCreativeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -42,6 +45,15 @@ public class ExcuseCreativeController implements ExcuseCreativeEndpoints {
             return "Vote ajouté !";
 
         }catch (EntiteNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ExcuseCreativeResponseDTO> afficherClassement(int nbClassement) {
+        try {
+            return excuseCreativeService.afficherClassement(nbClassement);
+        }catch (NotFoundRestException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,e.getMessage());
         }
     }

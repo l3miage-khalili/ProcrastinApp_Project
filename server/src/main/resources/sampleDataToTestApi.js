@@ -65,11 +65,11 @@ let excuseCreative = {
     "id":1,
     "texteExcuse":"j'etais malade",
     "situationApplication":"normal",
-    "createur":2,
+    "auteur":2,
     "categorie":"TRAVAIL"
 }
 
 let voteExcuseCreative = {
     "excuseCreativeId":"1",
-    "votant":"3",
+    "votant":"3"
 }
