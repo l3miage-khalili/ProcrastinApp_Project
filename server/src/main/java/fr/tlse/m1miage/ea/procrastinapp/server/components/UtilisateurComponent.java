@@ -1,6 +1,5 @@
 package fr.tlse.m1miage.ea.procrastinapp.server.components;
 
-import fr.tlse.m1miage.ea.procrastinapp.server.enums.Role;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.technical.EntiteNotFoundException;
 import fr.tlse.m1miage.ea.procrastinapp.server.models.UtilisateurEntity;
 import fr.tlse.m1miage.ea.procrastinapp.server.repositories.UtilisateurRepository;
@@ -24,4 +23,8 @@ public class UtilisateurComponent {
                 .orElseThrow(() -> new EntiteNotFoundException(String.format("Utilisateur de référence [%s] non trouvé", idUtilisateur))) ;
     }
 
+
+    public UtilisateurEntity updateUtilisateur(UtilisateurEntity utilisateurEntity){
+        return utilisateurRepository.save(utilisateurEntity);
+    }
 }
