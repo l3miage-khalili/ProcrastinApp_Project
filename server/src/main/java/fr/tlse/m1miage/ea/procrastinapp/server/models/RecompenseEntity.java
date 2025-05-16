@@ -1,9 +1,9 @@
 package fr.tlse.m1miage.ea.procrastinapp.server.models;
 
+import fr.tlse.m1miage.ea.procrastinapp.server.enums.NiveauPrestige;
 import fr.tlse.m1miage.ea.procrastinapp.server.enums.TypeRecompense;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.util.Set;
@@ -15,13 +15,12 @@ public class RecompenseEntity {
     @Id
     private Long id;  // A automatiser apres pour generer automatiquement les Id, pour le moment simple et pratique à tester sans l'automatisation
 
+    @NotNull
     private String titre;
+
     private String description;
     private String conditionsObtention;
-
-    @Min(1)
-    @Max(5)
-    private Integer niveauPrestige;
+    private NiveauPrestige niveauPrestige;
 
     @Enumerated(EnumType.STRING)
     private TypeRecompense type;

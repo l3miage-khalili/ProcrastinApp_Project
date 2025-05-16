@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecompenseRepository extends JpaRepository<RecompenseEntity, Long> {
+
+    RecompenseEntity findByTitre(String titre);
 }
