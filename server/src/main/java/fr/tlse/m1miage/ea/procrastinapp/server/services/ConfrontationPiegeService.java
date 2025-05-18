@@ -87,15 +87,7 @@ public class ConfrontationPiegeService {
 
                 }
                 // on met à jour le niveau de procrastination de l'utilisateur après avoir modifié ses points accumulés
-                int pointsAccumules = utilisateur.getPointsAccumules();
-                if (pointsAccumules < 500){
-                    utilisateur.setNiveauProcrastination(NiveauProcrastination.DEBUTANT);
-                } else if (pointsAccumules < 1000) {
-                    utilisateur.setNiveauProcrastination(NiveauProcrastination.INTERMEDIAIRE);
-                }
-                else {
-                    utilisateur.setNiveauProcrastination(NiveauProcrastination.EXPERT);
-                }
+                utilisateur = utilisateurComponent.updateNiveauProcrastination(utilisateur);
                 UtilisateurEntity updatedUtilisateur = utilisateurComponent.updateUtilisateur(utilisateur);
                 entityFromRequest.setUtilisateur(updatedUtilisateur);
                 entityFromRequest.setPiege(piege);
