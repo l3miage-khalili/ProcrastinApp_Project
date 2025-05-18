@@ -1,5 +1,6 @@
 package fr.tlse.m1miage.ea.procrastinapp.server.components;
 
+import fr.tlse.m1miage.ea.procrastinapp.server.enums.NiveauProcrastination;
 import fr.tlse.m1miage.ea.procrastinapp.server.exceptions.technical.EntiteNotFoundException;
 import fr.tlse.m1miage.ea.procrastinapp.server.models.UtilisateurEntity;
 import fr.tlse.m1miage.ea.procrastinapp.server.repositories.UtilisateurRepository;
@@ -26,5 +27,18 @@ public class UtilisateurComponent {
 
     public UtilisateurEntity updateUtilisateur(UtilisateurEntity utilisateurEntity){
         return utilisateurRepository.save(utilisateurEntity);
+    }
+
+    public UtilisateurEntity updateNiveauProcrastination(UtilisateurEntity utilisateur){
+        int pointsAccumules = utilisateur.getPointsAccumules();
+        if (pointsAccumules < 500){
+            utilisateur.setNiveauProcrastination(NiveauProcrastination.DEBUTANT);
+        } else if (pointsAccumules < 1000) {
+            utilisateur.setNiveauProcrastination(NiveauProcrastination.INTERMEDIAIRE);
+        }
+        else {
+            utilisateur.setNiveauProcrastination(NiveauProcrastination.EXPERT);
+        }
+        return utilisateur;
     }
 }
