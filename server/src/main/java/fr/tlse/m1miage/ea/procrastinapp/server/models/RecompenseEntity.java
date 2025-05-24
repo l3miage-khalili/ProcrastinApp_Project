@@ -20,6 +20,8 @@ public class RecompenseEntity {
 
     private String description;
     private String conditionsObtention;
+
+    @Enumerated(EnumType.STRING)
     private NiveauPrestige niveauPrestige;
 
     @Enumerated(EnumType.STRING)

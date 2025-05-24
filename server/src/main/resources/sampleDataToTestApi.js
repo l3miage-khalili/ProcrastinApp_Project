@@ -73,3 +73,32 @@ let voteExcuseCreative = {
     "excuseCreativeId":"1",
     "votant":"3"
 }
+
+let creationRecompense = {
+    "id":1,
+    "titre": "Maître Zen du Canapé",
+    "description": "description Maître Zen du Canapé",
+    "conditionsObtention": "conditions obtention Maître Zen du Canapé",
+    "niveauPrestige": "OR",
+    "type": "TITRE_HONORIFIQUE"
+}
+
+let creationConfrontationAUnPiege = {
+    "id": 1,
+    "idPiege": 1,
+    "idUtilisateur": 2,
+    "resultat": "SUCCES",
+    "commentaireUtilisateur": "commentaires utilisateur"
+}
+
+let updateTacheAEviter = { /* id de la tâche à passer en path variable */
+    "statut": "CATASTROPHE"
+}
+
+let attributionDuneRecompense = {
+    "id": 1,
+    "idUtilisateur": 2,
+    "idRecompense": 1,
+    "dateExpiration": "2025-06-30",
+    "contexteAttribution": "contexte attribution récompense"
+}
